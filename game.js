@@ -116,16 +116,16 @@ if(ballX - ballRadius <= 0 || ballX + ballRadius >= width ){
     }
     
 //move the paddles
-    if(_keyPressed && keyCode === UP && paddleA>=0){
+    if(__keyPressed && keyCode === UP && paddleA>=0){
         paddleA-=3;   
     }
-    if(_keyPressed && keyCode === DOWN && paddleA <=300){
+    if(__keyPressed && keyCode === DOWN && paddleA <=300){
         paddleA+=3;   
     }
-    if(_keyPressed && key.toString() === 'w' && paddleB >=0){
+    if(__keyPressed && key.toString() === 'w' && paddleB >=0){
         paddleB-=3;   
     }
-    if(_keyPressed && key.toString() === 's' && paddleB <=300){
+    if(__keyPressed && key.toString() === 's' && paddleB <=300){
         paddleB+=3;   
     }
 };
