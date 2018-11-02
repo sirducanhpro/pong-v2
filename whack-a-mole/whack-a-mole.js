@@ -3,42 +3,36 @@ var sketchProc = function(processingInstance) {
         // Outside of Khan Academy, you can control the size of your sketch!
         size(400, 400); 
        
-  
+  //es6 ways of creating object blueprints
+class Mole {
+    constructor(x,y,radius){
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
 
-var Mole = function(x,y,radius){
-    
-    //save valies as parameters
-    this.x=x;
-    this.y=y;
-    this.radius=radius;
-    
-};
-
-//add
-Mole.prototype.draw = function() {
-    noStroke();
-    fill(140, 89, 8);
-    
-    ellipse(this.x,
-            this.y,
-            this.radius*2,
-            this.radius*2);
-            
-    fill(255, 255, 255);
-    ellipse(this.x-this.radius/3,
-            this.y-this.radius/3,
-            this.radius/5,
-            this.radius/2);
-                     
-    ellipse(this.x+this.radius/3,
-            this.y-this.radius/3,
-            this.radius/5,
-            this.radius/2);
-};
-
-Mole.prototype.containsPoint = function(pointX,pointY){
-    
-    var distance = dist(pointX, pointY, this.x, this.y);
+    }
+    draw(){
+        noStroke();
+        fill(140, 89, 8);
+        
+        ellipse(this.x,
+                this.y,
+                this.radius*2,
+                this.radius*2);
+                
+        fill(255, 255, 255);
+        ellipse(this.x-this.radius/3,
+                this.y-this.radius/3,
+                this.radius/5,
+                this.radius/2);
+                         
+        ellipse(this.x+this.radius/3,
+                this.y-this.radius/3,
+                this.radius/5,
+                this.radius/2);
+    }
+    containsPoint(pointX,pointY){
+        var distance = dist(pointX, pointY, this.x, this.y);
         
         if (distance<= this.radius){
             return true;
@@ -46,8 +40,15 @@ Mole.prototype.containsPoint = function(pointX,pointY){
         else{
             return false;
         }
-            
-};
+    }
+
+
+}
+
+
+
+//add
+
 
 //lists of moles
 var moles=[];
