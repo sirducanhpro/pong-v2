@@ -22,6 +22,7 @@ var setup = function() {
 var draw = function() {
 
     // Draw the grid first, then the boy on top of it
+    background(255,255,255);
     grid.drawGrid();
     boy.draw();
 }
