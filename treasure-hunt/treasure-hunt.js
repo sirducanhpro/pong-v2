@@ -1,22 +1,49 @@
+var boy;
+var grid;
 
+// Gets called before game is loaded. 
+// Use it to load images & other resources
+var preload = function() {
 
-var setup = function(){
+    grid = new Grid(10, 10);
+    boy = new Boy(grid, 0, 0);
+}
 
-    var canvas = createCanvas(400,400)
-    canvas.parent('sketch-holder')
+// Before the draw function ever gets called, setup gets called
+//   After resources are loaded, sets up the game
+var setup = function() {
 
+    var canvas = createCanvas(400, 400);
+    canvas.parent('sketch-holder');
+}
 
+//  Gets called over and over again as the
+// game draws new frames
+var draw = function() {
 
+    // Draw the grid first, then the boy on top of it
+    grid.drawGrid();
+    boy.draw();
+}
 
-
-    var img;
-    function preload() {
-      img = loadImage('assets/Hanzo0.png');
+function keyTyped() {
+    if (key === 'w') {
+        boy.moveUp()
     }
-    function setup() {
-      // Top-left corner of the img is at (0, 0)
-      // Width and height are the img's original width and height
-      image(img, 0, 0);
+    if (key === 's') {
+        boy.moveDown()
     }
-ellipse(100,100,10,10);
-};
+    if (key === 'a') {
+        boy.moveLeft()
+    }
+    if (key === 'd') {
+        boy.moveRight();
+    }
+}
+
+
+
+
+
+
+  
