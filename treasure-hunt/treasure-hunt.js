@@ -1,9 +1,11 @@
 var boy;
 var grid;
 var treasure;
-var collided=false;
+var barrier;
+var barrierNear = false;
 
 var gameTreasure = [];
+var barrierObject= [];
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
@@ -12,12 +14,19 @@ var preload = function() {
     grid = new Grid(10, 10);
     boy = new Boy(grid, 0, 0);
     
-    for(var i=0;i<5;i++){
-        treasure = new Treasure(grid,random(10),random(10));
+    
+    for(var i = 0 ; i < 10; i++){
+        treasure = new Treasure(grid,round(random(10)),round(random(10)));
         gameTreasure.push(treasure);
     }
+    for(var i = 0; i <10; i++){
+        barrier= new Barrier(grid,round(random(10)),round(random(10)));
+        barrierObject.push(barrier);
+    }
+
     soundFormats('mp3', 'ogg');
     mySound = loadSound('assets/walk.mp3');
+    mySound2= loadSound('assets/ow.mp3')
 }
 
     
@@ -28,6 +37,8 @@ var setup = function() {
 
     var canvas = createCanvas(400, 400);
     canvas.parent('sketch-holder');
+    mySound2.setVolume(0.1);
+    mySound2.play();
 }
 
 //  Gets called over and over again as the
@@ -37,58 +48,63 @@ var draw = function() {
     // Draw the grid first, then the boy on top of it
     background(255,255,255);
     grid.drawGrid();
-    boy.draw();
-    if(collided){
-       
-        
-    }
-    else{
-         
-    }
-    for(i=0;i<5;i++){
+    
+    
+    for(i=0;i<gameTreasure.length;i++){
         gameTreasure[i].draw();
     }
     
+    
+    
+    boy.draw();
+    for(i = gameTreasure.length -1;i>=0;i--){
+        var treasure=gameTreasure[i];
+        if(treasure.col == boy.col && treasure.row == boy.row){
+            gameTreasure.splice(i,1);
+         
+            break;
+           
+        }
 
+    }
+    for(i = 0; i < barrierObject.length; i++){
+        barrierObject[i].draw();
 
-    //collision 
-    if(treasure.col == boy.col && treasure.row == boy.row){
-        collided=true;
-        
     }
-    else{
-        collided=false;
+    
+  
+
         
-    }
 };
-
+ mySound.setVolume(0.1);
+    
 function keyTyped() {
-    if (key === 'w') {
-        boy.moveUp()
+    if (key === 'w' && boy.nearBarrierUp() == false) {
         
-            
-            mySound.play();
+        boy.moveUp()
+
+        mySound.play();
           
     }
-    if (key === 's') {
+    if (key === 's' && boy.nearBarrierDown() == false) {
+        
         boy.moveDown()
         
-          
-            mySound.play();
+        mySound.play();
           
     }
-    if (key === 'a') {
+    if (key === 'a' && boy.nearBarrierLeft() == false) {
+        
         boy.moveLeft()
         
-            
-            mySound.play();
+        mySound.play();
           
     }
-    if (key === 'd') {
+    if (key === 'd' && boy.nearBarrierRight()== false) {
+       
         boy.moveRight();
         
-            
-            mySound.play();
+        mySound.play();
           
     }
 }

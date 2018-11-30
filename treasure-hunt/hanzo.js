@@ -23,10 +23,50 @@ class Boy {
        grid.drawImageOnGrid(this.img,this.col,this.row,this.direction);
     }
 
+    nearBarrierRight(){
+        for(i = barrierObject.length -1; i >=0; i--){
+            var barrier = barrierObject[i];
+            if (boy.col == barrier.col -1 && boy.row == barrier.row){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    nearBarrierLeft(){
+        for(i = barrierObject.length -1; i >=0; i--){
+        var barrier = barrierObject[i];
+            if (boy.col == barrier.col +1 && boy.row == barrier.row){
+                return true;
+            }
+        }
+    return false;
+    }
+
+    nearBarrierUp(){
+        for(i = barrierObject.length -1; i >=0; i--){
+            var barrier = barrierObject[i];
+            if (boy.col == barrier.col  && boy.row == barrier.row + 1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    nearBarrierDown(){
+        for(i = barrierObject.length -1; i >=0; i--){
+            var barrier = barrierObject[i];
+            if (boy.col == barrier.col  && boy.row == barrier.row - 1 ){
+                return true;
+            }
+        }
+        return false;
+    }
+
     moveRight() {
         // TODO: move your character to the right by one column (but don't let it leave the screen)
         // Also, set the direction as DIRECTION.RIGHT so that the image get's draw at the correct rotation
-        if(this.col< grid.cols - 1){
+        if(this.col< grid.cols - 1 ){
             this.col+= 1;
             this.direction= DIRECTION.RIGHT;
         }
