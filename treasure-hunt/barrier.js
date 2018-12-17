@@ -4,7 +4,7 @@ class Barrier{
         this.col=col;
         this.row=row;
     }
-
+    // create black barriers that player cannot pass
     draw(){
         rectMode(CENTER);
         fill(0,0,0);

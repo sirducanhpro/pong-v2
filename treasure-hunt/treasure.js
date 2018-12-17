@@ -18,4 +18,5 @@ class Treasure {
         //      try to understand this function
        grid.drawImageOnGrid(this.img,this.col,this.row,this.direction);
     }
+
 };

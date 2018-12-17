@@ -23,6 +23,7 @@ class Boy {
        grid.drawImageOnGrid(this.img,this.col,this.row,this.direction);
     }
 
+    //conditions so that player cannot move pass barriers
     nearBarrierRight(){
         for(i = barrierObject.length -1; i >=0; i--){
             var barrier = barrierObject[i];
@@ -63,6 +64,29 @@ class Boy {
         return false;
     }
 
+    //condition if player touch the enemies
+    touchGenji(){
+        for(i = enemies.length -1 ; i >= 0; i --){
+            var genji=enemies[i];
+            if (  abs(boy.col -genji.col ) <= 0.3 && abs(boy.row - genji.row) <=0.3 ){
+                return true;
+            }
+        }
+        return false;
+    }
+    touchGenjiMoving(){
+        for(i = enemiesMove.length -1 ; i >= 0; i --){
+            var genjiMove=enemiesMove[i];
+            if (  abs(boy.col -genjiMove.col ) <= 0.3 && abs(boy.row - genjiMove.row) <=0.3 ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+       
+      
+    //moving the player
     moveRight() {
         // TODO: move your character to the right by one column (but don't let it leave the screen)
         // Also, set the direction as DIRECTION.RIGHT so that the image get's draw at the correct rotation
