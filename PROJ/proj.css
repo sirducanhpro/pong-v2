@@ -1,0 +1,80 @@
+body{
+    overflow:hidden;
+}
+
+h1{
+    font-family: Calibri;
+text-shadow: 5px 5px 2px grey;
+}
+h2{
+    text-align: center;
+}
+#colorBox{
+    
+    border: 1px solid black;
+    width: 300x;
+    position: fixed;
+    right:0px;    
+    bottom: 0px;  
+    margin:0px;
+    background: pink;
+}
+
+.box{
+    height: 40px;
+    border: 1px solid black;
+    width: 40px;   
+ 
+    margin: 10px;
+    border-radius: 50px;
+
+    display:inline-block;
+}
+
+.red{
+    background: rgb(255, 0, 0);
+}
+
+.blue{
+    background: rgb(0, 0, 255);
+}
+.green{
+    background: rgb(0, 255, 0);
+}
+.black{
+    background: rgb(0, 0, 0);
+}
+.white{
+    background: rgb(255, 255, 255);
+}
+.size1{
+    background: black;
+    width:10px;
+    height :10px;
+    margin-left: 30px;  
+}
+.size2{
+    background: black;
+    width:20px;
+    height :20px;
+    margin-left: 30px;  
+}
+
+.size3{
+    background: black;
+    width:50px;
+    height :50px;
+    margin-left: 30px;  
+}
+.size4{
+    background: black;
+    width:100px;
+    height :100px;
+    margin-left: 30px;  
+}
+
+
+.box:hover{
+background: rgb(126, 104, 104)
+
+}
