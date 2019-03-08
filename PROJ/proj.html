@@ -7,7 +7,7 @@
     <title>Document</title>
 
     
-    <script src ="p5.min.js"></script>
+    <script src ="p5.js"></script>
     <script src ="p5.dom.min.js"></script>
     
     <script src = "proj.js"></script>
@@ -32,14 +32,14 @@
            
             
             <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="50" class = "slide" id="value"  onchange ="changed(this.value)">
+                <input type="range" min="10" max="100" value="50" class = "slide" id="valuez"  oninput="yourFunction(this.value)">
               </div>
 
               <p> Value = <span id="test"></span></p>
         </div>
 
 <script>
-    prepareSlider();
+    // prepareSlider();
 </script>
 
 

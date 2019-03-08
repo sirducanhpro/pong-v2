@@ -5,7 +5,7 @@ var g = 0;
 var b = 0;
 let c;
 
-var size  = 10;
+var brushSize  = 10;
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
@@ -41,7 +41,10 @@ var draw = function(){
   noStroke();
   fill(r,g,b);
   if(mouseIsPressed){
-    ellipse(mouseX,mouseY,size,size);
+    // Need to make brushSize into a
+    // number (from HTML, it's a string)
+    const circleSize = (brushSize / 1);
+    ellipse(mouseX,mouseY,circleSize,circleSize);
   }
   
 }   
@@ -75,19 +78,9 @@ function canvasSaved(event){
   save(c, 'myCanvas', 'jpg');
 }
 
+function yourFunction(val){
 
-function prepareSlider() {
-  
-  var slider = document.getElementById("value");
-  var output = document.getElementById("test");
-  output.innerHTML = slider.value;
-  
-
-  slider.oninput = function() {
-    
-    output.innerHTML = this.value;
-    size = this.value;
-   
-    console.log(size);  
-  }
+  brushSize = val;
+  console.log(val);
 }
+
