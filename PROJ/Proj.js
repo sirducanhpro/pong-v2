@@ -3,8 +3,9 @@
 var r = 0;
 var g = 0;
 var b = 0;
+let c;
 
-var size = 10;
+var size  = 10;
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
@@ -25,7 +26,7 @@ var preload = function() {
 //   After resources are loaded, sets up the game
 var setup = function() {
 
-    createCanvas(1520,700);  
+  c =  createCanvas(1520,700);  
 
     
   background(255,255,255);
@@ -36,12 +37,13 @@ var setup = function() {
 
 var draw = function(){
  
+  
   noStroke();
   fill(r,g,b);
   if(mouseIsPressed){
     ellipse(mouseX,mouseY,size,size);
   }
-
+  
 }   
 
 function boxWasClicked1(event){
@@ -69,15 +71,23 @@ function boxWasClicked5(event){
   g= 255;
   b= 255;
 }
-function boxWasClicked6(event){
-  size = 10;
+function canvasSaved(event){
+  save(c, 'myCanvas', 'jpg');
 }
-function boxWasClicked7(event){
-  size = 20;
-}
-function boxWasClicked8(event){
-  size = 50;
-}
-function boxWasClicked9(event){
-  size = 100;
+
+
+function prepareSlider() {
+  
+  var slider = document.getElementById("value");
+  var output = document.getElementById("test");
+  output.innerHTML = slider.value;
+  
+
+  slider.oninput = function() {
+    
+    output.innerHTML = this.value;
+    size = this.value;
+   
+    console.log(size);  
+  }
 }

@@ -14,6 +14,7 @@
     <script src = "menu.js"></script>
 
     <link rel="stylesheet" href="proj.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
 <body>
@@ -26,14 +27,20 @@
             <div class = "box green" onclick ="boxWasClicked3(event)"></div>
             <div class = "box black" onclick ="boxWasClicked4(event)"></div>
             <div class = "box white" onclick ="boxWasClicked5(event)"></div> <br>
+            <span id = "save">Save </span><i class="fas fa-save fa-3x" onclick = "canvasSaved(event)" ></i>
             <h2> Brush Size</h2>
-            <div class = "box size1" onclick ="boxWasClicked6(event)"></div> 
-            <div class = "box size2" onclick ="boxWasClicked7(event)"></div> 
-            <div class = "box size3" onclick ="boxWasClicked8(event)"></div> 
-            <div class = "box size4" onclick ="boxWasClicked9(event)"></div> 
+           
+            
+            <div class="slidecontainer">
+                <input type="range" min="10" max="100" value="50" class = "slide" id="value"  onchange ="changed(this.value)">
+              </div>
+
+              <p> Value = <span id="test"></span></p>
         </div>
 
-
+<script>
+    prepareSlider();
+</script>
 
 
 </body>

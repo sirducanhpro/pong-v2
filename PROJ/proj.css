@@ -9,6 +9,28 @@ text-shadow: 5px 5px 2px grey;
 h2{
     text-align: center;
 }
+#save{
+    margin: 10px;
+}
+.slidecontainer{
+    width: 100%;
+}
+.slide{
+    -webkit-appearance: none; 
+    height: 15px;
+    width: 95%;
+    margin: 10px;
+    border-radius:50px; 
+}
+.slide::-webkit-slider-thumb{
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 25px;
+border-radius: 50px;
+background: #4CAF50;
+cursor: pointer;
+}
 #colorBox{
     
     border: 1px solid black;
