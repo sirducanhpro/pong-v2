@@ -100,3 +100,8 @@ cursor: pointer;
 background: rgb(126, 104, 104)
 
 }
+dialog{
+    position: absolute;
+    top:50px;
+    background: rgb(207, 204, 204);
+}

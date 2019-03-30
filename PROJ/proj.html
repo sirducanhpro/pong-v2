@@ -19,7 +19,17 @@
 </head>
 <body>
     <h1> PAINTSHOP  </h1>
-    
+
+        <button onclick = "createDialog()"> New Sketch </button>
+
+        <dialog  id = "dialogBox"> 
+            <h2> Choose Resolution</h2>
+            <button style="margin-right: 20px; margin-left: 10px"   onclick = "setResolution1()"> 1520x700</button>   
+            
+            <button onclick = "setResolution2()"> 1280x800 </button>
+        </dialog>
+
+
         <div id = "colorBox">    
             <h2> Colors</h2> 
             <div class = "box red" onclick ="boxWasClicked1(event)"></div>
@@ -32,7 +42,7 @@
            
             
             <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="50" class = "slide" id="valuez"  oninput="yourFunction(this.value)">
+                <input type="range" min="1" max="100" value="50" class = "slide" id="valuez"  oninput="yourFunction(this.value)">
               </div>
 
               <p> Value = <span id="test"></span></p>

@@ -5,7 +5,13 @@ var g = 0;
 var b = 0;
 let c;
 
+var resoH = 0;
+
+
 var brushSize  = 10;
+
+var   previousMouseX= -1,
+      previousMouseY= -1;
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
@@ -26,8 +32,12 @@ var preload = function() {
 //   After resources are loaded, sets up the game
 var setup = function() {
 
-  c =  createCanvas(1520,700);  
-
+   
+  if(resoH = 0){
+    noCanvas();
+  }
+  
+  
     
   background(255,255,255);
 
@@ -38,16 +48,29 @@ var setup = function() {
 var draw = function(){
  
   
-  noStroke();
-  fill(r,g,b);
-  if(mouseIsPressed){
+  
+  stroke(r,g,b);
+  
     // Need to make brushSize into a
     // number (from HTML, it's a string)
-    const circleSize = (brushSize / 1);
-    ellipse(mouseX,mouseY,circleSize,circleSize);
-  }
+  const circleSize = (brushSize / 1);
+  strokeWeight(circleSize);
+  if ( mouseIsPressed && previousMouseX !== -1){
+    line(mouseX, mouseY, previousMouseX, previousMouseY);   
+}
+if (mouseIsPressed){
+    previousMouseX=mouseX;
+    previousMouseY=mouseY;
+} else {
+    // store -1 signify that mouse was not down
+    // in the previous frame.
+    previousMouseX= -1;
+    previousMouseY= -1;
+}
+
+}
   
-}   
+
 
 function boxWasClicked1(event){
   r =255;
@@ -84,3 +107,25 @@ function yourFunction(val){
   console.log(val);
 }
 
+function createDialog(){
+  let elem = document.getElementById('dialogBox');
+  elem.setAttribute('open',true);
+
+}
+
+function setResolution1(){
+  let elem = document.getElementById('dialogBox');
+  elem.removeAttribute('open');
+  
+ resoH = 1;
+  c = createCanvas(1500,720);
+
+}
+function setResolution2(){
+  let elem = document.getElementById('dialogBox');
+  elem.removeAttribute('open');
+  
+ resoH = 1;
+  c = createCanvas(1280,800);
+
+}
