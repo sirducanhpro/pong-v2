@@ -5,6 +5,11 @@ var g = 0;
 var b = 0;
 let c;
 
+var on = false;
+
+var input;
+var img;
+
 var resoH = 0;
 
 
@@ -41,13 +46,19 @@ var setup = function() {
     
   background(255,255,255);
 
+ 
+  input = createFileInput(handleFile);
+  
+  input.position(0, 0);
   
 }
    
 
 var draw = function(){
  
-  
+  if (img) {
+    image(img, 0, 0, width, height);
+  }
   
   stroke(r,g,b);
   
@@ -129,3 +140,11 @@ function setResolution2(){
   c = createCanvas(1280,800);
 
 }
+function handleFile(file) {
+  print(file);
+  if (file.type === 'image') {
+    img = createImg(file.data);
+    img.hide();
+  }
+}
+
