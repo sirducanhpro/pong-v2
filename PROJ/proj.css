@@ -104,5 +104,11 @@ dialog{
     position: absolute;
     top:50px;
     background: rgb(207, 204, 204);
+    width: 300px;
 }
 
+input:not(.slide) {
+position: absolute;
+top: 135px;
+left: 750px;
+}   

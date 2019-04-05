@@ -18,6 +18,9 @@ var brushSize  = 10;
 var   previousMouseX= -1,
       previousMouseY= -1;
 
+let bp;
+  
+
 // Gets called before game is loaded. 
 // Use it to load images & other resources
 var preload = function() {
@@ -51,23 +54,37 @@ var setup = function() {
   
   input.position(0, 0);
   
+  bp = createGraphics(1500,720);
+ 
+
 }
    
 
 var draw = function(){
+  const circleSize = (brushSize / 1);
+  
+  background(255);
+  fill(r,g,b);
+  noStroke();
+  ellipse(mouseX,mouseY,circleSize,circleSize);
+  
+  image(bp,0,0);
+
  
+  
+
   if (img) {
     image(img, 0, 0, width, height);
   }
   
-  stroke(r,g,b);
+  bp.stroke(r,g,b);
   
     // Need to make brushSize into a
     // number (from HTML, it's a string)
-  const circleSize = (brushSize / 1);
-  strokeWeight(circleSize);
+ 
+  bp.strokeWeight(circleSize);
   if ( mouseIsPressed && previousMouseX !== -1){
-    line(mouseX, mouseY, previousMouseX, previousMouseY);   
+    bp.line(mouseX, mouseY, previousMouseX, previousMouseY);   
 }
 if (mouseIsPressed){
     previousMouseX=mouseX;
@@ -148,3 +165,14 @@ function handleFile(file) {
   }
 }
 
+function upImage(){
+  let elem = document.getElementById('imgLoader');
+  elem.setAttribute('open',true);
+
+}
+
+function closeLoadDialog(){
+  let elem = document.getElementById('imgLoader');
+  elem.removeAttribute('open');
+
+}

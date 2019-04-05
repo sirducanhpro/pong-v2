@@ -29,13 +29,17 @@
             <button onclick = "setResolution2()"> 1280x800 </button>
         </dialog>
 
-        <button > Load Sketch  </button>
-      <input type="file" oninput= "handleFile(file)">
-        
+       <button onclick ="  upImage()"   > Load Sketch  </button>
+      <dialog id = "imgLoader">
+            <h2>Upload your Image here</h2>
+            <button onclick =" input = createFileInput(handleFile); upImage()"   > Load Sketch  </button><br>
+            <button onclick="closeLoadDialog()">  Close</button>
+      </dialog>
             
-        
 
-            
+     
+
+
         <div id = "colorBox">    
             <h2> Colors</h2> 
             <div class = "box red" onclick ="boxWasClicked1(event)"></div>
