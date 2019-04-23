@@ -1,33 +1,44 @@
 
-var vertices = [];
 
-var preload = function(){
+var preload = function () {
+    
+}
+
+
+var setup = function () {
+     createCanvas(700, 700);
+     //image(c,0,0,700,700);
+
 
 
 };
 
-var setup = function(){
-    createCanvas(1800,720);
-    background("pink")
+
+function mouseClicked() {
+
+     
+     
+
+     // 1: Identify vertex that we clicked on (if any)
+     // 2: Identify vertex that is currently selected
+
+
+     // 3: Do the appropiate action
+     //       > if clicked on empty space (so, no vertex was clicked on), then create a new vertex, 
+     //         connect it to selected vertex (if there is one), and update selection to that new vertex
+     //        
+     // 4: Update selection accordingly.
+
+    
+}
+
+
+var draw = function () {
+     background("white")
+
+
 
    
-};
-
-var draw = function(){
-    fill("black");
-    for(var i =0 ;i < vertices.length -1 ;i ++){
-       var vertexLast = vertices[i];
-       var vertexNew = vertices[i+1];
-        
-    line(vertexLast.x,vertexLast.y,vertexNew.x,vertexNew.y);
-
-    }
 
 };
 
-function mouseClicked(){
-     vertex = new Vertex (mouseX,mouseY, 30,30);
-     vertex.draw();
-     vertices.push(vertex);
-     
-}
