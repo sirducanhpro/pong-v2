@@ -23,7 +23,7 @@ class Vertex{
       
         fill("black");
        
-        ellipse(this.x,this.y,this.diameter,this.diameter);
+        ellipse(this.x,this.y,15,15);
         
     }
    

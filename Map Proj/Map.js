@@ -17,7 +17,6 @@ var setup = function () {
 function mouseClicked() {
 
      
-     
 
      // 1: Identify vertex that we clicked on (if any)
      // 2: Identify vertex that is currently selected
