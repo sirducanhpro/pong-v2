@@ -57,6 +57,8 @@ function loadVertex(x){
         return;
     }
 
+    
+
     loadJSON(x.data,function(graphData) {
        console.log(graphData.connections)
 
