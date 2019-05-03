@@ -3,28 +3,39 @@ class Vertex{
         this.x = x;
         this.y = y;
         this.id = id;
+        this.radius = 10;
 
-    }
-   
-    selected(pointX,pointY){
-        var distance = dist(pointX, pointY, this.x, this.y);
         
-        if(distance <= 15 && mouseIsPressed){
-            this.r = 255;
-           return true;
-            
-        } if( distance > 15 && mouseIsPressed){
-            this.r = 0;
-            return false;
+    }    
+    
+
+    
+
+
+    vertexSelected(x,y){
+       var distance = dist (this.x,this.y,x,y);
+       
+        if(distance <= this.radius ){
+            return true;
         }
-       
+        return false;
     }
-     draw(){
-      
-        fill("black");
-       
-        ellipse(this.x,this.y,15,15);
+
+
+    
+    draw(selected){
+        if(selected){
+            fill('red');
+            
+        } else{
+            fill('white');
+            
+        }
+        ellipse(this.x, this.y, 2 * this.radius, 2 * this.radius);
         
     }
-   
-}   
+
+
+
+    
+}

@@ -1,61 +1,91 @@
 class Graph {
-    constructor(){
 
-        this.vertices = [];
-        this.connections = {};
+    constructor() {
+
+
+        this.vertexArray = [];
+        this.connections = [];
+        this.connectionsNumber = 0;
+
     }
 
-    getVertex(id){
-        for(var i = 0; i< vertices.length -1; i++){
-            var vertex  = vertices[i];
-            if(vertex.selected()){
-                return vertex.id;
+    getVertex(id) {
+        return this.vertexArray[id];
+    }
+
+    vertexAt(x, y) {
+        for (var i = 0; i < this.vertexArray.length; i++) {
+            let vertex = this.vertexArray[i];
+            if (vertex.vertexSelected(x, y) == true) {
+                return vertex;
             }
-        }
-        if(vertex.connected(pointX,pointY) == false){
-            id = null;
-        }
-        return id;
-         
-    }
-    
-    addVertex(x,y){
 
-        vertex = new Vertex (x,y,id);
-        this.vertices.push(vertex);
-
-    }
-
-    vertexAt(x,y){
-        for(var i = 0; i< vertices.length -1; i++){
-            var vertex  = vertices[i];
-            if(vertex.selected(mouseX,mouseY)){
-                return vertex.x;
-                return vertex.y;
-            }
-            else{
-                return null;
-            }
-        }
-    }
-    hasConnection(firstVertex, secondVertex){
-        if(this.connections = [1,2]){
-            vertexAt(69,96);
         }
         return null;
-        return true;
     }
-    addConnection(firstVertex, secondVertex){
-        if(vertex.hasConnection(1,2)){
-           this.connections.push(69);
-        }
+
+
+    addVertex(x, y) {
+       
+       
+        let vertex = new Vertex(x, y, this.vertexArray.length);
+        this.vertexArray.push(vertex);
+        this.connections.push([]);
+        return vertex;
     }
-    draw(){
-        for(var i = 0; i< vertices.length -1; i++){
-            var vertex  = vertices[i];
+
+    draw() {
+
+        for (var i = 0; i < this.vertexArray.length; i++) {
+            let vertex = this.vertexArray[i];
             vertex.draw();
-        
+       
+       
         }
-        line(firstVertex, secondVertex);
+
+    }
+
+    hasConnectionBetween(vid, ovid) {
+
+        let idsOfConnectedVertices = this.connections[vid];
+        if( idsOfConnectedVertices.indexOf(ovid) !== -1){
+            return true;
+        }
+
+        return false;
+        
+      
+    }
+
+    addConnection(firstVertex, secondVertex) {
+        if (firstVertex === null || secondVertex === null){
+           
+            return;
+        }
+
+        if( this.hasConnectionBetween(firstVertex,secondVertex) === true){
+            return;
+        }   
+
+        let prev = this.vertexArray[firstVertex];
+        let current = this.vertexArray[secondVertex];
+
+        this.connections[prev.id].push(current.id);
+        this.connections[current.id].push(prev.id);
+    }
+
+    drawConnections() {
+        for (var firstVertex = 0; firstVertex < this.connections.length; firstVertex++) {
+
+            for (var i = 0; i < this.connections[firstVertex].length; i++) {
+                let secondVertex = this.connections[firstVertex][i];
+                let a = this.vertexArray[firstVertex];
+                let b = this.vertexArray[secondVertex];
+            
+            
+                line(a.x, a.y, b.x, b.y);
+
+       }
+    }
     }
 }

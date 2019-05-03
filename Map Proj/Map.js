@@ -1,43 +1,72 @@
+var mapCreator;
+var graph;
 
 
-var preload = function () {
+let img;
+
+function preload(){
     
+    graph = new Graph();
+    mapCreator = new MapCreator(graph);
+    
+     img = loadImage('map.jpg')
+    
+     let loadMapVertices = createFileInput(loadVertex);
+
+}
+
+function setup(){
+ createCanvas(1920,1000);
+ background(255,255,255);
+
+image(img,0,0)
 }
 
 
-var setup = function () {
-     createCanvas(700, 700);
-     //image(c,0,0,700,700);
 
-
-
-};
-
-
-function mouseClicked() {
-
-     
-
-     // 1: Identify vertex that we clicked on (if any)
-     // 2: Identify vertex that is currently selected
-
-
-     // 3: Do the appropiate action
-     //       > if clicked on empty space (so, no vertex was clicked on), then create a new vertex, 
-     //         connect it to selected vertex (if there is one), and update selection to that new vertex
-     //        
-     // 4: Update selection accordingly.
-
-    
-}
-
-
-var draw = function () {
-     background("white")
-
-
-
+function draw(){
    
+    
+    
+    graph.drawConnections();
+    graph.draw();
+    mapCreator.draw();
+    
+    
+    
+}
 
-};
+function mousePressed(){
+    if (mouseX < 0 || mouseY < 0 || mouseX > width || mouseY > height) {
+        return;
+    }
+    mapCreator.mouseClicked(mouseX, mouseY);
+    
 
+    
+}
+
+
+
+function saveVertices(){
+    saveJSON(graph,'tester',false)
+}
+
+function loadVertex(x){
+    if (x.subtype !== "json"){
+        return;
+    }
+
+    loadJSON(x.data,function(graphData) {
+       console.log(graphData)
+
+        for(  const vertexData of graphData.vertices ){
+            const vertex = new Vertex(vertexData.x,vertexData.y,vertexData.y)
+            graph.vertices.push(vertex);
+        }
+        vertexData.connections = graph.connections;
+    }
+    
+    );
+
+}
