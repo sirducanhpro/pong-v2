@@ -58,13 +58,14 @@ function loadVertex(x){
     }
 
     loadJSON(x.data,function(graphData) {
-       console.log(graphData)
+       console.log(graphData.connections)
 
-        for(  const vertexData of graphData.vertices ){
-            const vertex = new Vertex(vertexData.x,vertexData.y,vertexData.y)
-            graph.vertices.push(vertex);
+        for(  const vertexData of graphData.vertexArray ){
+            const vertex = new Vertex(vertexData.x,vertexData.y,vertexData.id)
+            graph.vertexArray.push(vertex);
         }
-        vertexData.connections = graph.connections;
+         graph.connections = graphData.connections;
+        graph.drawConnections();
     }
     
     );
