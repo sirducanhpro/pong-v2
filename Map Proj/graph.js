@@ -26,8 +26,8 @@ class Graph {
 
 
     addVertex(x, y) {
-       
-       
+
+
         let vertex = new Vertex(x, y, this.vertexArray.length);
         this.vertexArray.push(vertex);
         this.connections.push([]);
@@ -39,33 +39,32 @@ class Graph {
         for (var i = 0; i < this.vertexArray.length; i++) {
             let vertex = this.vertexArray[i];
             vertex.draw();
-       
-       
         }
-
     }
 
     hasConnectionBetween(vid, ovid) {
 
         let idsOfConnectedVertices = this.connections[vid];
-        if( idsOfConnectedVertices.indexOf(ovid) !== -1){
+        if (idsOfConnectedVertices.indexOf(ovid) !== -1) {
             return true;
         }
 
         return false;
-        
-      
+    }
+
+    verticesConnectedTo(vid) {
+        return this.connections[vid].map(id => this.getVertex(id));
     }
 
     addConnection(firstVertex, secondVertex) {
-        if (firstVertex === null || secondVertex === null){
-           
+        if (firstVertex === null || secondVertex === null) {
+
             return;
         }
 
-        if( this.hasConnectionBetween(firstVertex,secondVertex) === true){
+        if (this.hasConnectionBetween(firstVertex, secondVertex) === true) {
             return;
-        }   
+        }
 
         let prev = this.vertexArray[firstVertex];
         let current = this.vertexArray[secondVertex];
@@ -75,17 +74,18 @@ class Graph {
     }
 
     drawConnections() {
+        stroke(255, 180);
+        strokeWeight(1);
         for (var firstVertex = 0; firstVertex < this.connections.length; firstVertex++) {
 
             for (var i = 0; i < this.connections[firstVertex].length; i++) {
                 let secondVertex = this.connections[firstVertex][i];
                 let a = this.vertexArray[firstVertex];
                 let b = this.vertexArray[secondVertex];
-            
-            
-                line(a.x, a.y, b.x, b.y);
 
-       }
-    }
+
+                line(a.x, a.y, b.x, b.y);
+            }
+        }
     }
 }

@@ -24,12 +24,13 @@ class Vertex{
 
     
     draw(selected){
+        stroke(30);
+        strokeWeight(2);
         if(selected){
             fill('red');
             
         } else{
             fill('white');
-            
         }
         ellipse(this.x, this.y, 2 * this.radius, 2 * this.radius);
         

@@ -14,16 +14,16 @@ class MapCreator {
                 this.graph.addConnection(this.selectVertexId, this.graph.vertexArray.length - 1);
             }
             this.selectVertexId = this.graph.vertexArray.length - 1;
-        
-        
+
+
         } else {
             if (this.selectVertexId == mouseOnVertex.id) {
                 this.selectVertexId = null;
             } else {
                 this.graph.addConnection(this.selectVertexId, mouseOnVertex.id);
                 this.selectVertexId = mouseOnVertex.id;
-            
-            
+
+
             }
         }
     }
@@ -33,8 +33,8 @@ class MapCreator {
             let vertex = this.graph.vertexArray[i];
             if (vertex.id == this.selectVertexId) {
                 return vertex.draw(true);
-         }
-    }
+            }
+        }
     }
 }
 

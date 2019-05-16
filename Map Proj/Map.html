@@ -12,13 +12,51 @@
     <script src="Map.js"></script>
     <script src="vertex.js"></script>
     <script src="graph.js"></script>
-    <script src="Map creation.js">  </script>
+    <script src="Map creation.js"></script>
+    <script src="Map Searcher.js"></script>
 
+    <style>
+        body, html {
+            font-family: sans-serif;
+            background: #F6F6F6;
+            margin: 0;
+        }
+        .controls {
+            display: flex;
+            flex-direction: row;
+            margin: 0 0.5em;
+        }
+        .controlBox {
+            background: #fff;
+            margin: 1em 0.5em;
+            padding: 1em;
+            /* flex: 1; */
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);    
+        }
+        .controlBox h5 {
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 0.8em;
+            color: rgb(17, 139, 154);
+        }
+        canvas {
+            margin: 0 1em;
+        }
+    </style>
 </head>
 <body>
 
-<button onclick = "saveVertices()">Save</button>
-
-
+    <div class="controls">
+        <div class="controlBox">
+            <h5>Mode</h5>
+            <input type="radio" name="mode" value="MAP_CREATE" checked onclick="changeMode(this.value)"> Map Creation<br>
+            <input type="radio" name="mode" value="MAP_SEARCH" onclick="changeMode(this.value)"> Map Search<br>
+        </div>
+        <div class="controlBox" id="saveLoad">
+            <h5>Map Save / Load</h5>
+            <button onclick = "saveVertices()">Save</button>
+            <br>
+        </div>
+    </div>
 </body>
 </html>

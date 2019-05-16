@@ -1,52 +1,66 @@
+
+const MAP_SEARCH_MODE = "MAP_SEARCH";
+const MAP_CREATE_MODE = "MAP_CREATE";
+
 var mapCreator;
+let mapSearcher;
 var graph;
-
-
 let img;
+let mode = MAP_CREATE_MODE;
 
 function preload(){
     
     graph = new Graph();
     mapCreator = new MapCreator(graph);
+    mapSearcher = new MapSearcher(graph);
     
      img = loadImage('map.jpg')
     
      let loadMapVertices = createFileInput(loadVertex);
+     loadMapVertices.parent('saveLoad');
 
 }
 
 function setup(){
- createCanvas(1920,1000);
- background(255,255,255);
+    createCanvas(988, 947);
+    background(255,255,255);
 
-image(img,0,0)
+    image(img,0,0)
 }
-
-
 
 function draw(){
    
+    image(img, 0, 0, 50, 50);
     
     
     graph.drawConnections();
     graph.draw();
-    mapCreator.draw();
+
     
-    
-    
+    if (mode === MAP_CREATE_MODE) {
+        mapCreator.draw();
+    } else if (mode === MAP_SEARCH_MODE) {
+        mapSearcher.draw();
+        mapSearcher.processHover(mouseX, mouseY);
+        // todo
+    } else {
+        throw "Invalid mode: " + mode;
+    }
 }
 
 function mousePressed(){
     if (mouseX < 0 || mouseY < 0 || mouseX > width || mouseY > height) {
         return;
     }
-    mapCreator.mouseClicked(mouseX, mouseY);
-    
 
-    
+    if (mode === MAP_CREATE_MODE) {
+        mapCreator.mouseClicked(mouseX, mouseY);
+    } else if (mode === MAP_SEARCH_MODE) {
+        mapSearcher.processClick(mouseX, mouseY);
+    } else {
+        throw "Invalid mode: " + mode;
+    }
 }
-
-
 
 function saveVertices(){
     saveJSON(graph,'tester',false)
@@ -72,4 +86,31 @@ function loadVertex(x){
     
     );
 
+}
+
+function changeMode(value) {
+    console.log(value);
+    mode = value;
+}
+
+function drawArrow(fromVertex, toVertex, arrowColor) {
+
+    stroke(arrowColor);
+    strokeWeight(2);
+    fill(arrowColor);
+    
+    const fx = fromVertex.x,
+          fy = fromVertex.y,
+          tx = toVertex.x,
+          ty = toVertex.y,
+          offset = -6;
+
+    line(fx, fy, tx, ty);
+
+    push();
+    const angle = atan2(fy - ty, fx - tx);
+    translate(tx, ty);
+    rotate(angle + HALF_PI);
+    triangle(-offset*0.5, offset, offset*0.5, offset, 0, -offset/2)
+    pop();
 }
