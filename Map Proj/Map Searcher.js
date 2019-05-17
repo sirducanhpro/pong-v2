@@ -30,6 +30,10 @@ class MapSearcher {
         // this is how you enqueue something (add it to the end of the array)
         exploredVertices[this.destVertex.id] = true;
         searchQueue.push(this.destVertex);
+
+        while(searchQueue.length> 0){
+            let processingVertex = searchQueue.splice(0,1);
+        }
         
 
         // recommended: consult https://en.wikipedia.org/wiki/Breadth-first_search
